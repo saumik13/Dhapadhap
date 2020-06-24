@@ -5,11 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="circles.css">
     <script type="text/javascript" src="paper-full.js"></script>
+    <script type="text/javascript" src="howler.js-master/src/howler.core.js"></script>
     <title>Circles</title>
 
 
 
+
     <script type="text/paperscript" canvas = "myCanvas">
+
+        var sound = new Howl(
+            {
+                src: ['sounds/bubbles.mp3']
+
+            }
+        );
+        var sound2 = new Howl(
+            {
+                src: ['sounds/clay.mp3']
+
+            }
+        );
+        var keyData = {
+            a:{
+                color: "purple",
+                sound: new Howl({
+                    src: ['sounds/clay.mp3']
+                })
+            },
+            s:{
+                color: "green",
+                sound: new Howl({
+                        src: ['sounds/bubbles.mp3']
+        })}
+        }
+
+
+
     // create a paper.js file to draw a line into it
 
 
@@ -29,12 +60,25 @@
 
         // console.log(view.size);
         //You can use math.random if you want to
-        var maxPoint = new Point(view.size.width, view.size.height);
-        var randomPoint = new Point.random();
-        var point = maxPoint * randomPoint;
-        var newCircle = new Path.Circle(point,500);
-            newCircle.fillColor = "orange";
-        circles.push(newCircle);
+        if(keyData[event.key]) {
+            var maxPoint = new Point(view.size.width, view.size.height);
+            var randomPoint = new Point.random();
+            var point = maxPoint * randomPoint;
+            var newCircle = new Path.Circle(point, 500);
+            newCircle.fillColor = keyData[event.key].color;
+            keyData[event.key].sound.play();
+            circles.push(newCircle);
+        }
+        // if(event.key == "a"){
+        //     newCircle.fillColor = "#2c3e50";
+        //     sound.play();
+        //
+        // }
+        // if(event.key == "s"){
+        //     sound2.play();
+        //     newCircle.fillColor = "#16a085";
+        // }
+
 
 
 
