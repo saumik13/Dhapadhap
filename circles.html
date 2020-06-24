@@ -12,6 +12,13 @@
 
 
     <script type="text/paperscript" canvas = "myCanvas">
+        var background = new Path.Rectangle(
+            {
+                rectangle: view.bounds,
+                fillColor: "white"
+
+            }
+        )
 
         var sound = new Howl(
             {
@@ -57,6 +64,11 @@
            // }
     var circles = [];
     function onKeyDown(event){
+        if(event.key == 'space'){
+
+            background.fillColor = Color.random();
+            console.log(background.fillColor)
+        }
 
         // console.log(view.size);
         //You can use math.random if you want to
