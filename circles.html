@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="circles.css">
+    <script type="text/javascript" src="paper-full.js"></script>
+    <title>Circles</title>
+
+
+
+    <script type="text/paperscript" canvas = "myCanvas">
+    // create a paper.js file to draw a line into it
+
+
+
+           //  var circlepath = new Path.Circle(new Point(50,50), 25);
+           //  circlepath.strokeColor = 'purple';
+           //  circlepath.fillColor = "black";
+           // for(var i = 0; i<100 ; i++) {
+           //     for (var j = 0; j<100; j ++) {
+           //         var copy = circlepath.clone();
+           //         copy.position = new Point(50*i +50, 50*j + 50);
+           //
+           //     }
+           // }
+    var circles = [];
+    function onKeyDown(event){
+
+        // console.log(view.size);
+        //You can use math.random if you want to
+        var maxPoint = new Point(view.size.width, view.size.height);
+        var randomPoint = new Point.random();
+        var point = maxPoint * randomPoint;
+        var newCircle = new Path.Circle(point,500);
+            newCircle.fillColor = "orange";
+        circles.push(newCircle);
+
+
+
+
+    }
+    // var animateCircle = new Path.Circle(new Point(300,300),100);
+    // animateCircle.fillColor = "red";
+    function onFrame(){ //anytime there is a new frame as taken care by paper js
+        for(var i=0; i< circles.length; i++){
+            circles[i].fillColor.hue +=1;
+            circles[i].scale(.9);
+        }
+        // animateCircle.fillColor.hue +=1;
+        // animateCircle.scale(.99);
+
+    }
+
+
+    </script>
+</head>
+<body>
+    
+    <canvas id = "myCanvas" resize></canvas>
+</body>
+</html>
+
